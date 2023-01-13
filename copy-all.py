@@ -6,12 +6,19 @@ if __name__ == '__main__':
                   '192.168.1.222')
 
     dst = "/dst/path"
+
+    putty.exec_bash(
+f"""
+rm -rf {dst}
+mkdir -p {dst}
+""")
+
     putty.copy_files(r"src\docker-compose.yml", dst)
     putty.copy_files(r"src\Dockerfile", dst)
     putty.copy_files(r"src\*", dst)
 
     putty.exec_bash(
-"""
-cd "/dst/path"
+f"""
+cd {dst}
 docker-compose down && docker-compose build && docker-compose up -d
 """)
