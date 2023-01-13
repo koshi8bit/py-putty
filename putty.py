@@ -49,6 +49,6 @@ class Putty:
 
         result = os.system(f'{self.pscp} -r -pw {self.password} "{src}" {self.user}@{self.ip}:{dst}')
         if raise_exception and result != 0:
-            raise ValueError("plink returned non zero")
+            raise ValueError("pscp returned non zero")
 
         return result
