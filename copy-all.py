@@ -9,9 +9,9 @@ if __name__ == '__main__':
 rm -rf /home/services/shared-folders/src
 mkdir -p /home/services/shared-folders/src/{smb,auto-clear}
 """)
-    putty.copy_files(r"G:\koshi8bit\*",
+    putty.copy_files(r"G:\koshi8bit\docker-compose.yml",
                      r"/home/koshi8bit")
-    putty.copy_files(r"G:\koshi8bit\Dockerfile",
+    putty.copy_files(r"G:\koshi8bit\*",
                      r"/home/koshi8bit")
     putty.exec_bash(
 """
