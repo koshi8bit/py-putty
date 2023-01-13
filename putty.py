@@ -12,7 +12,12 @@ class Putty:
         self.password = getpass(f"Enter '{self.user}' pass: ")
         print(f"user: '{self.user}'; IP: {self.ip}; putty_path: '{putty_path}'")
 
-    def exec_plink(self, cmd: str) -> int:
+    def exec_bash(self, cmd: str) -> int:
+        """
+        Run bash command remotely
+        :param cmd:
+        :return: Error code. Check plink man
+        """
         file_name = "cmd.tmp"
         with open(file_name, "w") as f:
             f.write(cmd)
@@ -20,5 +25,14 @@ class Putty:
         os.remove(file_name)
         return result
 
-    def exec_pscp(self, src: str, dst: str) -> int:
+    def copy_files(self, src: str, dst: str) -> int:
+        """
+        Copy file or files from Windows to Linux via SSH
+        :param src: Source could be both directions. Examples:
+            putty.copy_files(r"G:\\koshi8bit\\*", r"/home/koshi8bit")
+            putty.copy_files(r"G:\\koshi8bit\\requirements.txt", r"/home/koshi8bit")
+            putty.copy_files(r"G:\\koshi8bit\\requirements.txt", r"/home/koshi8bit/some.file")
+        :param dst: Destination could be both directions
+        :return: Error code. Check pscp man
+        """
         return os.system(f'{self.pscp} -r -pw {self.password} "{src}" {self.user}@{self.ip}:{dst}')
