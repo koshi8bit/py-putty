@@ -9,6 +9,7 @@ if __name__ == '__main__':
 
     putty.exec_bash(
 f"""
+cd {dst}
 docker-compose down
 rm -rf {dst}
 mkdir -p {dst}
