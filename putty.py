@@ -4,10 +4,16 @@ import os
 
 class Putty:
     def __init__(self, putty_path: str, user: str, ip: str):
+        def get_and_check_path(file_name: str):
+            file_path = os.path.join(putty_path, file_name)
+            if not os.path.isfile(file_path):
+                raise FileExistsError(f"Файл не найден: {file_path}")
+            return file_path
+
         self.user = user
         self.ip = ip
-        self.plink = os.path.join(putty_path, "plink.exe")
-        self.pscp = os.path.join(putty_path, "pscp.exe")
+        self.plink = get_and_check_path("plink.exe")
+        self.pscp = get_and_check_path("pscp.exe")
 
         self.password = getpass(f"Enter '{self.user}' pass: ")
         print(f"user: '{self.user}'; IP: {self.ip}; putty_path: '{putty_path}'")
