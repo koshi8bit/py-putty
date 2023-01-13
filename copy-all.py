@@ -1,20 +1,17 @@
 from putty import Putty
 
 if __name__ == '__main__':
-    putty = Putty(r'G:\koshi8bit\putty',
+    putty = Putty(r'G:\koshi8bit\soft\windows\01-osnovnoe\SSH\putty',
                   'bnct',
                   '192.168.1.222')
-    putty.exec_bash(
-"""
-rm -rf /home/services/shared-folders/src
-mkdir -p /home/services/shared-folders/src/{smb,auto-clear}
-""")
 
-    putty.copy_files(r"src\*", "/home/services/dhcp")
-    putty.copy_files(r"src\docker-compose.yml", "/home/services/dhcp")
+    dst = "/dst/path"
+    putty.copy_files(r"src\docker-compose.yml", dst)
+    putty.copy_files(r"src\Dockerfile", dst)
+    putty.copy_files(r"src\*", dst)
 
     putty.exec_bash(
 """
-cd /home/services/shared-folders/src/smb/
+cd "/dst/path"
 docker-compose down && docker-compose build && docker-compose up -d
 """)
