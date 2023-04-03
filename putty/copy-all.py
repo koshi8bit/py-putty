@@ -7,13 +7,16 @@ if __name__ == '__main__':
 
     dst = "/dst/path"
 
+    if dst == "/dst/path":
+        raise ValueError("Fill destonation (dst) variable")
+
     putty.exec_bash(
 f"""
 cd {dst}
 docker-compose down
 rm -rf {dst}
 mkdir -p {dst}
-""")
+""", False)
 
     putty.copy_files(r"src\docker-compose.yml", dst)
     putty.copy_files(r"src\Dockerfile", dst)
