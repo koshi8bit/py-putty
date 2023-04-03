@@ -1,2 +1,2 @@
 @echo off
-python copy-all.py
+python putty\copy-all.py

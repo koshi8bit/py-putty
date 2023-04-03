@@ -16,11 +16,13 @@ cd {dst}
 docker-compose down
 rm -rf {dst}
 mkdir -p {dst}
+mkdir -p {dst}/src
 """, False)
 
-    putty.copy_files(r"src\docker-compose.yml", dst)
-    putty.copy_files(r"src\Dockerfile", dst)
-    putty.copy_files(r"src\*", dst)
+    putty.copy_files(r"Dockerfile", dst)
+    putty.copy_files(r"docker-compose.yaml", dst)
+    putty.copy_files(r"src\*", f"{dst}/src")
+    putty.copy_files(r"requirements.txt", dst)
 
     putty.exec_bash(
 f"""
