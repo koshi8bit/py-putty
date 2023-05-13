@@ -13,7 +13,7 @@ if __name__ == '__main__':
     putty.exec_bash(
 f"""
 cd {dst}
-docker-compose down
+docker compose down
 rm -rf {dst}
 mkdir -p {dst}
 mkdir -p {dst}/src
@@ -27,5 +27,5 @@ mkdir -p {dst}/src
     putty.exec_bash(
 f"""
 cd {dst}
-docker-compose build && docker-compose up -d
+docker compose build && docker-compose up -d
 """)
