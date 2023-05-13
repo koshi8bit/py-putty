@@ -27,5 +27,5 @@ mkdir -p {dst}/src
     putty.exec_bash(
 f"""
 cd {dst}
-docker compose build && docker-compose up -d
+docker compose build && docker compose up -d
 """)
